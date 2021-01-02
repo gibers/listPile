@@ -372,21 +372,39 @@ Liste eliminePosisiontsPairesChap(Liste L1) {
     return eliminePositionsPaires(L1, longueur_rec(L1) % 2);
 }
 
+/*************************************************/
+/*          Begaye                               */
+/*************************************************/
+
+Liste begaye (Liste L1) {
+    if (estVide(L1)) return L1;
+
+    int i = L1->nombre;
+    if (i <= 0) {
+        return begaye(L1->suivant);
+    }
+    Liste pBloc = begaye(L1->suivant);
+    empile(i, &pBloc);
+    empile(i, &pBloc);
+    return pBloc;
+}
+
 
 int main(int argc, char **argv) {
 
     Liste l1;
     initVide(&l1);
     empile(1, &l1);
-    empile(2, &l1);
+    empile(-2, &l1);
     empile(3, &l1);
-    empile(4, &l1);
-    empile(5, &l1);
-    empile(6, &l1);
-    empile(7, &l1);
+//    empile(4, &l1);
+//    empile(5, &l1);
+//    empile(6, &l1);
+//    empile(7, &l1);
 
     affiche_rec(l1);
-    Liste pBloc = eliminePosisiontsPairesChap(l1);
+//    Liste pBloc = eliminePosisiontsPairesChap(l1);
+    Liste pBloc = begaye(l1);
     affiche_rec(pBloc);
 
   /*Liste l1;
